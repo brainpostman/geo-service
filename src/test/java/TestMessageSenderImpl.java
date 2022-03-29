@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-public class testMessageSenderImpl {
+public class TestMessageSenderImpl {
 
     @ParameterizedTest
     @MethodSource()
@@ -30,7 +30,7 @@ public class testMessageSenderImpl {
         } else {
             location = new Location("New York", Country.USA, " 10th Avenue", 32);
         }
-        GeoService geoService = Mockito.spy(GeoServiceImpl.class);
+        GeoService geoService = Mockito.mock(GeoServiceImpl.class);
         Mockito.when(geoService.byIp(headers.get("x-real-ip")))
                 .thenReturn(location);
         LocalizationService localizationService = Mockito.spy(LocalizationServiceImpl.class);
@@ -38,6 +38,7 @@ public class testMessageSenderImpl {
                 .thenCallRealMethod();
         MessageSender messageSender = new MessageSenderImpl(geoService, localizationService);
         String result = messageSender.send(headers);
+        System.out.println();
         Assertions.assertEquals(expected, result);
     }
 

@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
-public class testLocalizationServiceImpl {
+public class TestLocalizationServiceImpl {
 
     @ParameterizedTest
     @MethodSource()
